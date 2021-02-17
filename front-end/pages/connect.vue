@@ -1,11 +1,7 @@
 <template>
   <v-row>
     <v-col class="text-center" cols="6" offset="3">
-      <img
-        src="/v.png"
-        alt="Vuetify.js"
-        class="mb-5"
-      >
+      <MyCorpoLogo />
       <v-card>
         <v-card-text>
           <v-form
