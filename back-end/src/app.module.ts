@@ -3,6 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { Evenement } from './models/evenement/entities/evenement.entity';
 import configuration from './config/configuration';
 import {UsersModule} from "./users/users.module";
 import {User} from "./models/user.entity";
@@ -17,8 +18,8 @@ import {User} from "./models/user.entity";
       username: configuration().database.user,
       password: configuration().database.password,
       database: configuration().database.database,
-      entities: [User],
-      synchronize: true
+      entities: [Evenement, User],
+      synchronize: true,
     }),
       UsersModule
   ],

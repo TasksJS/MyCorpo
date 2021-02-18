@@ -9,7 +9,6 @@
             lazy-validation
           >
             <v-text-field
-              v-model="name"
               label="Login"
               required
             />
