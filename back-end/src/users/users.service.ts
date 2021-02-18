@@ -9,7 +9,8 @@ import configuration from '../config/configuration';
 @Injectable()
 export class UsersService {
   constructor(
-    @InjectRepository(User) private usersRepository: Repository<User>,
+    @InjectRepository(User)
+    private usersRepository: Repository<User>,
   ) {}
 
   async getUsers(): Promise<User[]> {
@@ -28,11 +29,29 @@ export class UsersService {
     });
   }
 
+  async createUser(userDto: CreateUserDto) {
+    if (
+      await this.usersRepository.findOne({
+        where: { username: userDto.username },
+      })
+    ) {
+      throw new ConflictException('');
+    }
+
+    const salt = bcrypt.genSaltSync(configuration().bcrypt_rounds);
+    userDto.password = bcrypt.hashSync(userDto.password, salt);
+
+    const user = await this.usersRepository.create(userDto);
+    await this.usersRepository.save(user);
+  }
+
   async updateUser(userId: number, userDto: CreateUserDto) {
     const user = await this.getUserById(userId);
 
     if (
-      await this.usersRepository.find({ where: { username: userDto.username } })
+      await this.usersRepository.findOne({
+        where: { username: userDto.username },
+      })
     ) {
       throw new ConflictException('');
     }
@@ -47,17 +66,5 @@ export class UsersService {
 
   async deleteUser(user: User) {
     await this.usersRepository.delete(user);
-  }
-
-  async createUser(userDto: CreateUserDto) {
-    if (
-      await this.usersRepository.findOne({
-        where: { username: userDto.username },
-      })
-    ) {
-      throw new ConflictException('');
-    }
-    const user = await this.usersRepository.create(userDto);
-    await this.usersRepository.save(user);
   }
 }

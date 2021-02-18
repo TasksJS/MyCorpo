@@ -6,11 +6,14 @@ import {
   Param,
   Post,
   Put,
+  Request,
+  UseGuards,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { User } from '../models/user.entity';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 
 @Controller('users')
 export class UsersController {
@@ -35,8 +38,9 @@ export class UsersController {
     return this.usersService.createUser(user);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Put()
-  update(@Body() user: UpdateUserDto) {
-    return this.usersService.updateUser(2, user);
+  update(@Request() req, @Body() user: UpdateUserDto) {
+    return this.usersService.updateUser(req.user.id, user);
   }
 }
