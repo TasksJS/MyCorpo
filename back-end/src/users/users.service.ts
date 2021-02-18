@@ -3,6 +3,8 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from '../models/user.entity';
 import { Repository } from 'typeorm';
+import * as bcrypt from 'bcrypt';
+import configuration from '../config/configuration';
 
 @Injectable()
 export class UsersService {
@@ -20,6 +22,12 @@ export class UsersService {
     });
   }
 
+  async getUserByUsername(_username: string): Promise<User> {
+    return await this.usersRepository.findOne({
+      where: [{ username: _username }],
+    });
+  }
+
   async updateUser(userId: number, userDto: CreateUserDto) {
     const user = await this.getUserById(userId);
 
@@ -30,7 +38,9 @@ export class UsersService {
     }
 
     user.username = userDto.username || user.username;
-    user.password = userDto.password || user.password;
+
+    const salt = bcrypt.genSaltSync(configuration().bcrypt_rounds);
+    user.password = bcrypt.hashSync(userDto.password, salt) || user.password;
 
     await this.usersRepository.save(user);
   }
@@ -39,15 +49,15 @@ export class UsersService {
     await this.usersRepository.delete(user);
   }
 
-  async createUser(createUserDto: CreateUserDto) {
+  async createUser(userDto: CreateUserDto) {
     if (
       await this.usersRepository.findOne({
-        where: { username: createUserDto.username },
+        where: { username: userDto.username },
       })
     ) {
       throw new ConflictException('');
     }
-    const user = await this.usersRepository.create(createUserDto);
+    const user = await this.usersRepository.create(userDto);
     await this.usersRepository.save(user);
   }
 }

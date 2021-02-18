@@ -8,6 +8,8 @@ import configuration from './config/configuration';
 import { UsersModule } from './users/users.module';
 import { EvenementModule } from './evenement/evenement.module';
 import { User } from './models/user.entity';
+import { AuthModule } from './auth/auth.module';
+
 
 @Module({
   imports: [
@@ -22,8 +24,9 @@ import { User } from './models/user.entity';
       entities: [Evenement, User],
       synchronize: true,
     }),
-    UsersModule,
-    EvenementModule,
+      UsersModule,
+      AuthModule,
+      EvenementModule,
   ],
   controllers: [AppController],
   providers: [AppService],
