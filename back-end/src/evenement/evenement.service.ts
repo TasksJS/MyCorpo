@@ -1,26 +1,46 @@
-import { Injectable } from '@nestjs/common';
+import { ConflictException, Injectable } from '@nestjs/common';
 import { CreateEvenementDto } from './dto/create-evenement.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Evenement } from '../models/evenement.entity';
+import { Repository } from 'typeorm';
 import { UpdateEvenementDto } from './dto/update-evenement.dto';
 
 @Injectable()
 export class EvenementService {
-  create(createEvenementDto: CreateEvenementDto) {
-    return 'This action adds a new evenement';
+  constructor(
+    @InjectRepository(Evenement)
+    private evenementsRepository: Repository<Evenement>,
+  ) {}
+
+  async getEvenements(): Promise<Evenement[]> {
+    return await this.evenementsRepository.find();
   }
 
-  findAll() {
-    return `This action returns all evenement`;
+  async getEvenementById(_id: number): Promise<Evenement> {
+    return await this.evenementsRepository.findOne({
+      where: [{ id: _id }],
+    });
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} evenement`;
+  async updateEvenement(evenementId: number, evenementDto: UpdateEvenementDto) {
+    const evenement = await this.getEvenementById(evenementId);
+
+    evenement.name = evenementDto.name || evenement.name;
+    evenement.description = evenementDto.description || evenement.description;
+    evenement.date = evenementDto.date || evenement.date;
+    evenement.isActive = evenementDto.isActive || evenement.isActive;
+
+    await this.evenementsRepository.save(evenement);
   }
 
-  update(id: number, updateEvenementDto: UpdateEvenementDto) {
-    return `This action updates a #${id} evenement`;
+  async deleteEvenement(evenement: Evenement) {
+    await this.evenementsRepository.delete(evenement);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} evenement`;
+  async createEvenement(createEvenementDto: CreateEvenementDto) {
+    const evenement = await this.evenementsRepository.create(
+      createEvenementDto,
+    );
+    await this.evenementsRepository.save(evenement);
   }
 }

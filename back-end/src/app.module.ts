@@ -6,6 +6,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Evenement } from './models/evenement.entity';
 import configuration from './config/configuration';
 import { UsersModule } from './users/users.module';
+import { EvenementModule } from './evenement/evenement.module';
 import { User } from './models/user.entity';
 
 @Module({
@@ -22,6 +23,7 @@ import { User } from './models/user.entity';
       synchronize: true,
     }),
     UsersModule,
+    EvenementModule,
   ],
   controllers: [AppController],
   providers: [AppService],
