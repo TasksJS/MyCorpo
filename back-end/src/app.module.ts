@@ -3,10 +3,10 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Evenement } from './models/evenement/entities/evenement.entity';
+import { Evenement } from './models/evenement.entity';
 import configuration from './config/configuration';
-import {UsersModule} from "./users/users.module";
-import {User} from "./models/user.entity";
+import { UsersModule } from './users/users.module';
+import { User } from './models/user.entity';
 
 @Module({
   imports: [
@@ -21,9 +21,9 @@ import {User} from "./models/user.entity";
       entities: [Evenement, User],
       synchronize: true,
     }),
-      UsersModule
+    UsersModule,
   ],
   controllers: [AppController],
-  providers: [AppService]
+  providers: [AppService],
 })
 export class AppModule {}
