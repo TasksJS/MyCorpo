@@ -51,6 +51,12 @@ export default {
     '@nuxtjs/auth-next'
   ],
   auth: {
+    redirect: {
+      login: '/connect',
+      logout: '/connect',
+      callback: '/connect',
+      home: '/'
+    },
     strategies: {
       local: {
         token: {
@@ -64,7 +70,8 @@ export default {
         },
         endpoints: {
           login: { url: '/auth/login', method: 'post' },
-          user: { url: '/auth/profile', method: 'get' }
+          user: { url: '/auth/profile', method: 'get' },
+          logout: false
         }
       }
     }
