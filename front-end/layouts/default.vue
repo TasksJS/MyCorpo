@@ -70,6 +70,11 @@ export default {
           icon: 'mdi-account',
           title: 'Se connecter',
           to: '/connect'
+        },
+        {
+          icon: 'mdi-calendar-multiple',
+          title: 'Évènements',
+          to: '/events'
         }
       ],
       miniVariant: false,
