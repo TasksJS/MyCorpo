@@ -1,6 +1,12 @@
 import colors from 'vuetify/es5/util/colors'
 
 export default {
+
+  publicRuntimeConfig: {
+    axios: {
+      baseURL: 'http://localhost:3333/'
+    }
+  },
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     titleTemplate: '%s - front-end',
@@ -40,9 +46,31 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/axios
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    '@nuxtjs/auth-next'
   ],
-
+  auth: {
+    strategies: {
+      local: {
+        token: {
+          property: 'access_token'
+          // required: true,
+          // type: 'Bearer'
+        },
+        user: {
+          property: 'username'
+          // autoFetch: true
+        },
+        endpoints: {
+          login: { url: '/auth/login', method: 'post' },
+          user: { url: '/auth/profile', method: 'get' }
+        }
+      }
+    }
+  },
+  router: {
+    middleware: ['auth']
+  },
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {},
 
