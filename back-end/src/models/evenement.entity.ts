@@ -1,15 +1,18 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-export class Example {
+export class Evenement {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
-  firstName: string;
+  name: string;
 
   @Column()
-  lastName: string;
+  description: string;
+
+  @Column({ type: 'timestamp' })
+  date: string;
 
   @Column({ default: true })
   isActive: boolean;
