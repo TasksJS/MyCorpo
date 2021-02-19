@@ -67,7 +67,7 @@ export default {
           to: '/'
         },
         {
-          icon: 'mdi-account',
+          icon: 'mdi-login',
           title: 'Se connecter',
           to: '/connect'
         },
@@ -75,6 +75,11 @@ export default {
           icon: 'mdi-calendar-multiple',
           title: 'Évènements',
           to: '/events'
+        },
+        {
+          icon: 'mdi-account-circle',
+          title: 'Mon profil',
+          to: '/profile'
         }
       ],
       miniVariant: false,

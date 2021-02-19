@@ -1,0 +1,66 @@
+<template>
+  <v-row justify="center" align="center">
+    <v-col cols="12" sm="8" md="6">
+      <v-card class="mt-10">
+        <v-card-title class="headline">
+          My Beautiful Profile Page
+        </v-card-title>
+        <v-card-text>
+          <v-text-field
+            v-model="form.username"
+            label="My Beautiful Login"
+          />
+        </v-card-text>
+        <v-card-actions class="justify-end">
+          <v-btn color="primary">
+            Update
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+      <v-card class="mt-5">
+        <v-card-title class="headline text-h6">
+          Change my password
+        </v-card-title>
+        <v-card-text>
+          <v-text-field
+            v-model="form.password"
+            label="My Beautiful Old Password"
+          />
+          <v-text-field
+            v-model="form.new_password"
+            label="My Beautiful New Password"
+          />
+          <v-text-field
+            v-model="form.new_password_repeat"
+            label="My Beautiful New Password Repeat"
+          />
+        </v-card-text>
+        <v-card-actions class="justify-end">
+          <v-btn color="primary">
+            Update
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-col>
+  </v-row>
+</template>
+
+<script>
+export default {
+  name: 'Profile',
+  data: () => {
+    return {
+      form: {
+        username: 'Miguel',
+        password: '',
+        new_password: '',
+        new_password_repeat: ''
+      }
+    }
+  }
+}
+</script>
+
+<style scoped>
+
+</style>
