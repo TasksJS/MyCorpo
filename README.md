@@ -42,6 +42,11 @@ Our beautiful frontend ✨ is accessible on http://localhost:3000
 
 Our somehow working backend 💩 is accessible on http://localhost:3333
 
+Our shitty (but working) documentation 💩 is accessible on http://localhost:3333/api-docs/
+
+You can use it to create a user with @Post /users
+
+
 
 
 Note 1: Please don't use Yarn...

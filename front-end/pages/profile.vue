@@ -8,11 +8,12 @@
         <v-card-text>
           <v-text-field
             v-model="form.username"
-            label="My Beautiful Login"
+            disabled
+            label="Fonctionnalité désactivé"
           />
         </v-card-text>
         <v-card-actions class="justify-end">
-          <v-btn color="primary">
+          <v-btn color="primary" @click="updateUserName">
             Update
           </v-btn>
         </v-card-actions>
@@ -24,15 +25,18 @@
         <v-card-text>
           <v-text-field
             v-model="form.password"
-            label="My Beautiful Old Password"
+            disabled
+            label="Feature bientôt disponible ;)"
           />
           <v-text-field
             v-model="form.new_password"
-            label="My Beautiful New Password"
+            disabled
+            label="Feature bientôt disponible ;)"
           />
           <v-text-field
             v-model="form.new_password_repeat"
-            label="My Beautiful New Password Repeat"
+            disabled
+            label="Feature bientôt disponible ;)"
           />
         </v-card-text>
         <v-card-actions class="justify-end">
@@ -51,11 +55,22 @@ export default {
   data: () => {
     return {
       form: {
-        username: 'Miguel',
+        username: '',
         password: '',
         new_password: '',
         new_password_repeat: ''
       }
+    }
+  },
+  mounted () {
+    this.form.username = this.$auth.user
+  },
+  methods: {
+    updateUserName () {
+      this.$axios.$put('/users', {
+        username: this.form.username
+      })
+      this.$auth.fetchUser()
     }
   }
 }

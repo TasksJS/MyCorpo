@@ -9,7 +9,7 @@
     >
       <v-list>
         <v-list-item
-          v-for="(item, i) in items"
+          v-for="(item, i) in itemsFiltered"
           :key="i"
           :to="item.to"
           router
@@ -23,6 +23,13 @@
           </v-list-item-content>
         </v-list-item>
       </v-list>
+      <template #append>
+        <div v-if="$auth.loggedIn" class="pa-2">
+          <v-btn color="red" block @click="$auth.logout('local')">
+            Se déconnecter
+          </v-btn>
+        </div>
+      </template>
     </v-navigation-drawer>
     <v-app-bar
       :clipped-left="clipped"
@@ -69,23 +76,32 @@ export default {
         {
           icon: 'mdi-login',
           title: 'Se connecter',
-          to: '/connect'
+          to: '/connect',
+          hideWhenLoggedIn: true
         },
         {
           icon: 'mdi-calendar-multiple',
           title: 'Évènements',
-          to: '/events'
+          to: '/events',
+          needLogin: true
         },
         {
           icon: 'mdi-account-circle',
           title: 'Mon profil',
-          to: '/profile'
+          to: '/profile',
+          needLogin: true
         }
       ],
       miniVariant: false,
       right: true,
       rightDrawer: false,
       title: 'MyCorpo'
+    }
+  },
+  computed: {
+    itemsFiltered () {
+      return this.items.filter(item =>
+        item.needLogin ? (this.$auth.loggedIn) : item.hideWhenLoggedIn ? !this.$auth.loggedIn : true)
     }
   }
 }
