@@ -2,10 +2,10 @@ name: Linter
 
 on:
   push: 
-    branches-ignore: [master]
+    branches-ignore: [master, develop]
 
   pull_request:
-    branches: [master]
+    branches: [master, develop]
 
 jobs:
   build:
