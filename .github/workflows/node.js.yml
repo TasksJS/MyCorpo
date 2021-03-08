@@ -4,8 +4,6 @@
 name: Node.js CI
 
 on:
-  push:
-    branches: [ master, develop ]
   pull_request:
     branches: [ master, develop ]
 
@@ -38,7 +36,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
       env:
-        APP_SECRET: nY$Vy47%dsK@mHm^
+        APP_SECRET: tcDX%WQxtNda!PqXB!uB&Xt&rgmK@@Z@4EF^#LQcjo7NieQoFm$Woj*wj5m9K49^FeXXB7Hno@J*MeCZUk%*#XRhn9Ncku#rBHK^47yVZ#LUeV@H9zHMdbhwxoRRXQ5U
         BCRYPT_ROUNDS: 10
         DATABASE_HOST: 127.0.0.1
         DATABASE_PORT: ${{ job.services.mysql.ports[3306] }}
