@@ -7,7 +7,7 @@ on:
   pull_request:
     branches: [master]
 
-  jobs:
+jobs:
   build:
     name: Linter
     runs-on: ubuntu-latest
@@ -15,11 +15,11 @@ on:
       - name: Checkout Code
         uses: actions/checkout@v2
         with:
-        fetch-depth: 0
+          fetch-depth: 0
 
       - name: Lint Code
         uses: github/super-linter@v3
         env:
-        VALIDATE_ALL_CODEBASE: false
-        DEFAULT_BRANCH: master
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VALIDATE_ALL_CODEBASE: false
+          DEFAULT_BRANCH: master
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
