@@ -1,9 +1,7 @@
 name: Linter
 
 on:
-  push: 
-    branches-ignore: [master, develop]
-
+  push:
   pull_request:
     branches: [master, develop]
 
