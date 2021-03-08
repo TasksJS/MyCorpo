@@ -78,6 +78,7 @@
 <script>
 import MyCorpoLogo from '~/components/MyCorpoLogo.vue'
 
+;
 export default {
   auth: false,
   components: {
