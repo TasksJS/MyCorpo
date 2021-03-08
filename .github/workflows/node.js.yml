@@ -46,7 +46,8 @@ jobs:
         DATABASE_DATABASE: mycorp
         MODE: dev
     - run: |
-            cd ~/back-end
+            cd back-end
             npm ci
-            cd ~/front-end
+    - run: |
+            cd ../front-end
             npm ci
