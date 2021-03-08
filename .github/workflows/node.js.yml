@@ -49,5 +49,5 @@ jobs:
             cd back-end
             npm ci
     - run: |
-            cd ../front-end
+            cd front-end
             npm ci
