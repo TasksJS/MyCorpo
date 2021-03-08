@@ -1,0 +1,52 @@
+# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: Node.js CI
+
+on:
+  push:
+    branches: [ master, develop ]
+  pull_request:
+    branches: [ master, develop ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [10.x, 12.x, 14.x, 15.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+        
+    services:
+      mysql:
+          image: mysql:5.7
+          env:
+              MYSQL_ALLOW_EMPTY_PASSWORD: yes
+              MYSQL_DATABASE: mycorp
+          ports:
+              - 3306
+          options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+      env:
+        APP_SECRET: nY$Vy47%dsK@mHm^
+        BCRYPT_ROUNDS: 10
+        DATABASE_HOST: 127.0.0.1
+        DATABASE_PORT: ${{ job.services.mysql.ports[3306] }}
+        DATABASE_USER: root
+        DATABASE_PASSWORD: ''
+        DATABASE_DATABASE: mycorp
+        MODE: dev
+    - run: |
+            cd ~/back-end
+            npm ci
+            cd ~/front-end
+            npm ci
