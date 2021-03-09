@@ -1,0 +1,38 @@
+name: node Unit test
+
+on:
+  push:
+  pull_request:
+    branches: [master, develop]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [10.x, 12.x, 14.x, 15.x]
+
+    steps:
+      - name: Checkout project
+        uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+        env:
+          APP_SECRET: tcDX%WQxtNda!PqXB!uB&Xt&rgmK@@Z@4EF^#LQcjo7NieQoFm$Woj*wj5m9K49^FeXXB7Hno@J*MeCZUk%*#XRhn9Ncku#rBHK^47yVZ#LUeV@H9zHMdbhwxoRRXQ5U
+          BCRYPT_ROUNDS: 10
+          DATABASE_HOST: 127.0.0.1
+          DATABASE_PORT: ${{ job.services.mysql.ports[3306] }}
+          DATABASE_USER: root
+          DATABASE_PASSWORD: ''
+          DATABASE_DATABASE: mycorp
+          MODE: dev
+      - name: Test back end project
+        run: |
+          cd back-end
+          npm ci
+          npm run build --if-present
+          npm test
