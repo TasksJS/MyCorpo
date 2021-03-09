@@ -25,3 +25,8 @@ jobs:
           VALIDATE_HTML: true
           VALIDATE_CSS: true
           VALIDATE_TYPESCRIPT_ES: true
+      - name: Upload Report as an artifact
+        uses: actions/upload-artifact@master
+        with:
+          name: linter-report
+          path: "${{ github.workspace }}/super-linter.report/"
