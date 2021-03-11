@@ -16,10 +16,10 @@ jobs:
           fetch-depth: 0
       - name: Create cache folder
         run: |
-          sudo mkdir web/cache web/public/files
+          sudo mkdir web web/cache web/public/files
       - name: Update access permissions
         run: |
-          sudo chmod 777 -Rf web/cache web/public/files web/phalcon.log
+          sudo chmod 777 -Rf web/cache web/public/files web/mycorpo.log
       - uses: cypress-io/github-action@v1
         with:
           build: |
