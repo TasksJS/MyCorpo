@@ -1,0 +1,36 @@
+name: Cypress
+
+on:
+  push:
+  pull_request:
+    branches: [master, develop]
+
+jobs:
+  cypress-run:
+    runs-on: ubuntu-latest
+    name: Tests with Cypress
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Create cache folder
+        run: |
+          sudo mkdir web/cache web/public/files
+      - name: Update access permissions
+        run: |
+          sudo chmod 777 -Rf web/cache web/public/files web/phalcon.log
+      - uses: cypress-io/github-action@v1
+        with:
+          build: |
+            docker-compose up -d --build
+      - uses: actions/upload-artifact@v1
+        if: failure()
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots
+      - uses: actions/upload-artifact@v1
+        if: always()
+        with:
+          name: cypress-videos
+          path: cypress/videos
