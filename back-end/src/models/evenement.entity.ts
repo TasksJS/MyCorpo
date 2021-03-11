@@ -14,6 +14,9 @@ export class Evenement {
   @Column({ type: 'timestamp' })
   date: string;
 
+  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  created_at: string;
+
   @Column({ default: true })
   isActive: boolean;
 }
