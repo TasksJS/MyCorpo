@@ -89,11 +89,13 @@
                     <v-text-field
                       v-model="name"
                       label="Titre"
+                      name="title"
                       required
                     />
                     <v-text-field
                       v-model="description"
                       label="Description"
+                      name="description"
                       required
                     />
                     <v-menu
@@ -110,6 +112,7 @@
                           required
                           label="Date de l'évènement"
                           prepend-icon="mdi-calendar"
+                          name="date"
                           readonly
                           v-bind="attrs"
                           v-on="on"
@@ -137,6 +140,7 @@
                           required
                           label="Heure de l'évènement"
                           prepend-icon="mdi-clock-time-four-outline"
+                          name="time"
                           readonly
                           v-bind="attrs"
                           v-on="on"

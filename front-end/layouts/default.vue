@@ -19,7 +19,7 @@
             <v-icon>{{ item.icon }}</v-icon>
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title v-text="item.title" />
+            <v-list-item-title v-text="item.title"/>
           </v-list-item-content>
         </v-list-item>
       </v-list>
@@ -71,24 +71,28 @@ export default {
         {
           icon: 'mdi-home',
           title: 'Accueil',
-          to: '/'
+          to: '/',
+          name: 'home'
         },
         {
           icon: 'mdi-login',
           title: 'Se connecter',
           to: '/connect',
+          name: 'connect',
           hideWhenLoggedIn: true
         },
         {
           icon: 'mdi-calendar-multiple',
           title: 'Évènements',
           to: '/events',
+          name: 'events',
           needLogin: true
         },
         {
           icon: 'mdi-account-circle',
           title: 'Mon profil',
           to: '/profile',
+          name: 'profile',
           needLogin: true
         }
       ],
