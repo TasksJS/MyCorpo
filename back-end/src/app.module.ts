@@ -9,7 +9,6 @@ import configuration from './config/configuration';
 import { UsersModule } from './users/users.module';
 import { User } from './models/user.entity';
 import { AuthModule } from './auth/auth.module';
-import {UsersService} from "./users/users.service";
 
 @Module({
   imports: [
@@ -29,6 +28,6 @@ import {UsersService} from "./users/users.service";
     EvenementModule,
   ],
   controllers: [AppController],
-  providers: [AppService, UsersService],
+  providers: [AppService],
 })
 export class AppModule {}
