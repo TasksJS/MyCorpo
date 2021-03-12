@@ -24,7 +24,7 @@ jobs:
         run: |
           sudo mkdir cypress cypress/screenshots cypress/videos
       - name: Run Cypress
-      - uses: cypress-io/github-action@v2
+        uses: cypress-io/github-action@v2
         with:
           project: ./front-end
           working-directory: ./front-end
