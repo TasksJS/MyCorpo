@@ -26,6 +26,7 @@ jobs:
       - uses: cypress-io/github-action@v2
         with:
           project: ./front-end
+          working-directory: ./front-end
           build: |
             docker-compose up -d --build
       - uses: actions/upload-artifact@v1
