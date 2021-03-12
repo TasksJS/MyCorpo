@@ -17,10 +17,13 @@ jobs:
       - name: Create cache folder
         run: |
           sudo mkdir web web/cache web/public
+      - name: Create log folder
+        run: |
+          sudo mkdir log
       - name: Create cypress screenshot and videos folder
         run: |
           sudo mkdir cypress cypress/screenshots cypress/videos
-      - uses: cypress-io/github-action@v1
+      - uses: cypress-io/github-action@v2
         with:
           build: |
             docker-compose up -d --build
