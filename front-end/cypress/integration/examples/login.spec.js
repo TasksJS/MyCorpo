@@ -12,9 +12,7 @@ context("Actions", () => {
     // https://on.cypress.io/type
 
     // Connect to the app
-    cy.get('input[name="login"]')
-      .type("steven")
-      .should("have.value", "steven");
+    cy.get('input[name="login"]').type("steven").should("have.value", "steven");
 
     cy.get('input[name="password"]')
       .type("azerty")
@@ -32,8 +30,6 @@ context("Actions", () => {
     cy.get("form").within(() => {
       cy.get('input[name="title"]').type("Réparer la RX8");
       cy.get('input[name="description"]').type("Prévoir des outils");
-      cy.get('input[name="date"]').type("2021-12-22");
-      cy.get('input[name="time"]').type("8:00");
     });
 
     // Suppression
