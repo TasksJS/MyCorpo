@@ -26,7 +26,6 @@ jobs:
       - name: Run Cypress
         uses: cypress-io/github-action@v2
         with:
-          project: ./front-end
           working-directory: ./front-end
       - uses: actions/upload-artifact@v1
         if: failure()
