@@ -19,7 +19,7 @@ jobs:
           sudo mkdir web web/cache web/public
       - name: Update access permissions
         run: |
-          sudo chmod 777 -Rf web/cache web/public web/mycorpo.log || true
+          sudo chmod 777 -Rf web/cache web/public web/mycorpo.log
       - uses: cypress-io/github-action@v1
         with:
           build: |
