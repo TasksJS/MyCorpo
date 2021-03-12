@@ -17,9 +17,9 @@ jobs:
       - name: Create cache folder
         run: |
           sudo mkdir web web/cache web/public
-      - name: Update access permissions
+      - name: Create cypress screenshot and videos folder
         run: |
-          sudo chmod 777 -Rf web/cache web/public/files
+          sudo mkdir web cypress/screenshots cypress/videos
       - uses: cypress-io/github-action@v1
         with:
           build: |
