@@ -57,6 +57,7 @@
                       <v-spacer />
                       <v-btn
                         color="red"
+                        class="delete"
                         text
                         @click="deleteEvent(event)"
                       >

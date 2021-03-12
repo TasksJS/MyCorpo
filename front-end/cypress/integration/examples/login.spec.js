@@ -33,6 +33,10 @@ context("Actions", () => {
       cy.get('input[name="title"]').type("Réparer la RX8");
       cy.get('input[name="description"]').type("Prévoir des outils");
       cy.get('input[name="date"]').type("2021-12-22");
+      cy.get('input[name="time"]').type("8:00");
     });
+
+    // Suppression
+    cy.get("button.delete").click();
   });
 });
