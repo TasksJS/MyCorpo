@@ -28,8 +28,7 @@ jobs:
         with:
           working-directory: ./front-end
           start: |
-            npm run build
-            npm run start
+            npm run dev
       - uses: actions/upload-artifact@v1
         if: failure()
         with:
