@@ -1,0 +1,782 @@
+{
+    "annotations": {
+        "list": [
+            {
+                "builtIn": 1,
+                "datasource": "-- Grafana --",
+                "enable": true,
+                "hide": true,
+                "iconColor": "rgba(0, 211, 255, 1)",
+                "name": "Annotations & Alerts",
+                "type": "dashboard"
+      }
+    ]
+    },
+    "editable": true,
+    "gnetId": null,
+    "graphTooltip": 0,
+    "id": 1,
+    "links": [],
+    "panels": [
+        {
+            "alert": {
+                "alertRuleTags": {},
+                "conditions": [
+                    {
+                        "evaluator": {
+                            "params": [
+                0
+              ],
+                            "type": "gt"
+                        },
+                        "operator": {
+                            "type": "and"
+                        },
+                        "query": {
+                            "params": [
+                "A",
+                "1m",
+                "now"
+              ]
+                        },
+                        "reducer": {
+                            "params": [],
+                            "type": "count"
+                        },
+                        "type": "query"
+          }
+        ],
+                "executionErrorState": "alerting",
+                "for": "1m",
+                "frequency": "1m",
+                "handler": 1,
+                "message": "A new user has been registered",
+                "name": "New user alter",
+                "noDataState": "keep_state",
+                "notifications": [
+                    {
+                        "uid": "0kwOLYUGz"
+          }
+        ]
+            },
+            "aliasColors": {},
+            "bars": false,
+            "dashLength": 10,
+            "dashes": false,
+            "datasource": null,
+            "fieldConfig": {
+                "defaults": {
+                    "custom": {}
+                },
+                "overrides": []
+            },
+            "fill": 1,
+            "fillGradient": 0,
+            "gridPos": {
+                "h": 8,
+                "w": 12,
+                "x": 0,
+                "y": 0
+            },
+            "hiddenSeries": false,
+            "id": 10,
+            "legend": {
+                "avg": false,
+                "current": false,
+                "max": false,
+                "min": false,
+                "show": true,
+                "total": false,
+                "values": false
+            },
+            "lines": true,
+            "linewidth": 1,
+            "nullPointMode": "null",
+            "options": {
+                "alertThreshold": true
+            },
+            "percentage": false,
+            "pluginVersion": "7.4.3",
+            "pointradius": 2,
+            "points": false,
+            "renderer": "flot",
+            "seriesOverrides": [],
+            "spaceLength": 10,
+            "stack": false,
+            "steppedLine": false,
+            "targets": [
+                {
+                    "format": "time_series",
+                    "group": [],
+                    "metricColumn": "none",
+                    "rawQuery": true,
+                    "rawSql": "SELECT\r\n  $__time(created_at),\r\n  count(id) AS \"User count\"\r\nFROM user\r\nWHERE\r\n  $__timeFilter(created_at)\r\nGROUP BY 1\r\nORDER BY $__timeGroup(created_at,$__interval,0)",
+                    "refId": "A",
+                    "select": [
+            [
+                            {
+                                "params": [
+                  "id"
+                ],
+                                "type": "column"
+              }
+            ]
+          ],
+                    "table": "evenement",
+                    "timeColumn": "date",
+                    "timeColumnType": "timestamp",
+                    "where": [
+                        {
+                            "name": "$__timeFilter",
+                            "params": [],
+                            "type": "macro"
+            }
+          ]
+        }
+      ],
+            "thresholds": [
+                {
+                    "colorMode": "critical",
+                    "fill": true,
+                    "line": true,
+                    "op": "gt",
+                    "value": 0,
+                    "visible": true
+        }
+      ],
+            "timeFrom": null,
+            "timeRegions": [],
+            "timeShift": null,
+            "title": "New users alert",
+            "tooltip": {
+                "shared": true,
+                "sort": 0,
+                "value_type": "individual"
+            },
+            "type": "graph",
+            "xaxis": {
+                "buckets": null,
+                "mode": "time",
+                "name": null,
+                "show": true,
+                "values": []
+            },
+            "yaxes": [
+                {
+                    "format": "short",
+                    "label": null,
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+        },
+                {
+                    "format": "short",
+                    "label": null,
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+        }
+      ],
+            "yaxis": {
+                "align": false,
+                "alignLevel": null
+            }
+    },
+        {
+            "aliasColors": {},
+            "bars": true,
+            "dashLength": 10,
+            "dashes": false,
+            "datasource": null,
+            "fieldConfig": {
+                "defaults": {
+                    "custom": {}
+                },
+                "overrides": []
+            },
+            "fill": 1,
+            "fillGradient": 0,
+            "gridPos": {
+                "h": 8,
+                "w": 12,
+                "x": 12,
+                "y": 0
+            },
+            "hiddenSeries": false,
+            "id": 6,
+            "interval": "1d",
+            "legend": {
+                "alignAsTable": false,
+                "avg": false,
+                "current": false,
+                "max": false,
+                "min": false,
+                "rightSide": false,
+                "show": true,
+                "total": false,
+                "values": false
+            },
+            "lines": false,
+            "linewidth": 1,
+            "nullPointMode": "null",
+            "options": {
+                "alertThreshold": true
+            },
+            "percentage": false,
+            "pluginVersion": "7.4.3",
+            "pointradius": 2,
+            "points": false,
+            "renderer": "flot",
+            "seriesOverrides": [],
+            "spaceLength": 10,
+            "stack": false,
+            "steppedLine": false,
+            "targets": [
+                {
+                    "format": "time_series",
+                    "group": [
+                        {
+                            "params": [
+                "$__interval",
+                "0"
+              ],
+                            "type": "time"
+            }
+          ],
+                    "hide": false,
+                    "metricColumn": "none",
+                    "rawQuery": false,
+                    "rawSql": "SELECT\n  $__timeGroupAlias(created_at,$__interval,0),\n  count(id) AS \"Event count\"\nFROM evenement\nWHERE\n  $__timeFilter(created_at)\nGROUP BY 1\nORDER BY $__timeGroup(created_at,$__interval,0)",
+                    "refId": "A",
+                    "select": [
+            [
+                            {
+                                "params": [
+                  "id"
+                ],
+                                "type": "column"
+              },
+                            {
+                                "params": [
+                  "count"
+                ],
+                                "type": "aggregate"
+              },
+                            {
+                                "params": [
+                  "Event count"
+                ],
+                                "type": "alias"
+              }
+            ]
+          ],
+                    "table": "evenement",
+                    "timeColumn": "created_at",
+                    "timeColumnType": "timestamp",
+                    "where": [
+                        {
+                            "name": "$__timeFilter",
+                            "params": [],
+                            "type": "macro"
+            }
+          ]
+        }
+      ],
+            "thresholds": [],
+            "timeFrom": null,
+            "timeRegions": [],
+            "timeShift": null,
+            "title": "Events / creation date",
+            "tooltip": {
+                "shared": true,
+                "sort": 0,
+                "value_type": "individual"
+            },
+            "type": "graph",
+            "xaxis": {
+                "buckets": null,
+                "mode": "time",
+                "name": null,
+                "show": true,
+                "values": []
+            },
+            "yaxes": [
+                {
+                    "$$hashKey": "object:807",
+                    "decimals": null,
+                    "format": "short",
+                    "label": null,
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+        },
+                {
+                    "$$hashKey": "object:808",
+                    "format": "short",
+                    "label": null,
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+        }
+      ],
+            "yaxis": {
+                "align": false,
+                "alignLevel": null
+            }
+    },
+        {
+            "aliasColors": {},
+            "bars": true,
+            "dashLength": 10,
+            "dashes": false,
+            "datasource": null,
+            "fieldConfig": {
+                "defaults": {
+                    "custom": {}
+                },
+                "overrides": []
+            },
+            "fill": 1,
+            "fillGradient": 0,
+            "gridPos": {
+                "h": 8,
+                "w": 12,
+                "x": 0,
+                "y": 8
+            },
+            "hiddenSeries": false,
+            "id": 4,
+            "interval": "1d",
+            "legend": {
+                "alignAsTable": false,
+                "avg": false,
+                "current": false,
+                "max": false,
+                "min": false,
+                "rightSide": false,
+                "show": true,
+                "total": false,
+                "values": false
+            },
+            "lines": false,
+            "linewidth": 1,
+            "nullPointMode": "null",
+            "options": {
+                "alertThreshold": true
+            },
+            "percentage": false,
+            "pluginVersion": "7.4.3",
+            "pointradius": 2,
+            "points": false,
+            "renderer": "flot",
+            "seriesOverrides": [],
+            "spaceLength": 10,
+            "stack": false,
+            "steppedLine": false,
+            "targets": [
+                {
+                    "format": "time_series",
+                    "group": [
+                        {
+                            "params": [
+                "$__interval",
+                "0"
+              ],
+                            "type": "time"
+            }
+          ],
+                    "metricColumn": "none",
+                    "rawQuery": false,
+                    "rawSql": "SELECT\n  $__timeGroupAlias(date,$__interval,0),\n  count(id) AS \"Event count\"\nFROM evenement\nWHERE\n  $__timeFilter(date)\nGROUP BY 1\nORDER BY $__timeGroup(date,$__interval,0)",
+                    "refId": "A",
+                    "select": [
+            [
+                            {
+                                "params": [
+                  "id"
+                ],
+                                "type": "column"
+              },
+                            {
+                                "params": [
+                  "count"
+                ],
+                                "type": "aggregate"
+              },
+                            {
+                                "params": [
+                  "Event count"
+                ],
+                                "type": "alias"
+              }
+            ]
+          ],
+                    "table": "evenement",
+                    "timeColumn": "date",
+                    "timeColumnType": "timestamp",
+                    "where": [
+                        {
+                            "name": "$__timeFilter",
+                            "params": [],
+                            "type": "macro"
+            }
+          ]
+        }
+      ],
+            "thresholds": [],
+            "timeFrom": null,
+            "timeRegions": [],
+            "timeShift": null,
+            "title": "Events / happening date",
+            "tooltip": {
+                "shared": true,
+                "sort": 0,
+                "value_type": "individual"
+            },
+            "type": "graph",
+            "xaxis": {
+                "buckets": null,
+                "mode": "time",
+                "name": null,
+                "show": true,
+                "values": []
+            },
+            "yaxes": [
+                {
+                    "$$hashKey": "object:807",
+                    "decimals": null,
+                    "format": "short",
+                    "label": null,
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+        },
+                {
+                    "$$hashKey": "object:808",
+                    "format": "short",
+                    "label": null,
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+        }
+      ],
+            "yaxis": {
+                "align": false,
+                "alignLevel": null
+            }
+    },
+        {
+            "aliasColors": {},
+            "bars": true,
+            "dashLength": 10,
+            "dashes": false,
+            "datasource": null,
+            "fieldConfig": {
+                "defaults": {
+                    "custom": {}
+                },
+                "overrides": []
+            },
+            "fill": 1,
+            "fillGradient": 0,
+            "gridPos": {
+                "h": 8,
+                "w": 12,
+                "x": 12,
+                "y": 8
+            },
+            "hiddenSeries": false,
+            "id": 5,
+            "interval": "1d",
+            "legend": {
+                "alignAsTable": false,
+                "avg": false,
+                "current": false,
+                "max": false,
+                "min": false,
+                "rightSide": false,
+                "show": true,
+                "total": false,
+                "values": false
+            },
+            "lines": false,
+            "linewidth": 1,
+            "nullPointMode": "null",
+            "options": {
+                "alertThreshold": true
+            },
+            "percentage": false,
+            "pluginVersion": "7.4.3",
+            "pointradius": 2,
+            "points": false,
+            "renderer": "flot",
+            "seriesOverrides": [],
+            "spaceLength": 10,
+            "stack": false,
+            "steppedLine": false,
+            "targets": [
+                {
+                    "format": "time_series",
+                    "group": [
+                        {
+                            "params": [
+                "$__interval",
+                "0"
+              ],
+                            "type": "time"
+            }
+          ],
+                    "metricColumn": "none",
+                    "rawQuery": false,
+                    "rawSql": "SELECT\n  $__timeGroupAlias(created_at,$__interval,0),\n  avg(id) AS \"User count\"\nFROM user\nWHERE\n  $__timeFilter(created_at)\nGROUP BY 1\nORDER BY $__timeGroup(created_at,$__interval,0)",
+                    "refId": "A",
+                    "select": [
+            [
+                            {
+                                "params": [
+                  "id"
+                ],
+                                "type": "column"
+              },
+                            {
+                                "params": [
+                  "avg"
+                ],
+                                "type": "aggregate"
+              },
+                            {
+                                "params": [
+                  "User count"
+                ],
+                                "type": "alias"
+              }
+            ]
+          ],
+                    "table": "user",
+                    "timeColumn": "created_at",
+                    "timeColumnType": "timestamp",
+                    "where": [
+                        {
+                            "name": "$__timeFilter",
+                            "params": [],
+                            "type": "macro"
+            }
+          ]
+        }
+      ],
+            "thresholds": [],
+            "timeFrom": null,
+            "timeRegions": [],
+            "timeShift": null,
+            "title": "Users / date",
+            "tooltip": {
+                "shared": true,
+                "sort": 0,
+                "value_type": "individual"
+            },
+            "type": "graph",
+            "xaxis": {
+                "buckets": null,
+                "mode": "time",
+                "name": null,
+                "show": true,
+                "values": []
+            },
+            "yaxes": [
+                {
+                    "$$hashKey": "object:807",
+                    "decimals": null,
+                    "format": "short",
+                    "label": null,
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+        },
+                {
+                    "$$hashKey": "object:808",
+                    "format": "short",
+                    "label": null,
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+        }
+      ],
+            "yaxis": {
+                "align": false,
+                "alignLevel": null
+            }
+    },
+        {
+            "datasource": null,
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "thresholds"
+                    },
+                    "custom": {},
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": []
+                    }
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 8,
+                "w": 12,
+                "x": 0,
+                "y": 16
+            },
+            "id": 2,
+            "options": {
+                "colorMode": "value",
+                "graphMode": "area",
+                "justifyMode": "auto",
+                "orientation": "auto",
+                "reduceOptions": {
+                    "calcs": [
+            "lastNotNull"
+          ],
+                    "fields": "",
+                    "values": false
+                },
+                "text": {},
+                "textMode": "auto"
+            },
+            "pluginVersion": "7.4.3",
+            "targets": [
+                {
+                    "format": "table",
+                    "group": [],
+                    "hide": false,
+                    "metricColumn": "none",
+                    "queryType": "randomWalk",
+                    "rawQuery": true,
+                    "rawSql": "SELECT\n  count(distinct u.id) as \"User count\",\n  count(distinct e.id) as \"Event count\",\n  (SELECT count(id) FROM evenement  WHERE `date`<CURRENT_TIMESTAMP) as \"Happened events\",\n  (SELECT count(id) FROM evenement  WHERE `date`>=CURRENT_TIMESTAMP) as \"Future events\"\nFROM user u, evenement e;",
+                    "refId": "A",
+                    "select": [
+            [
+                            {
+                                "params": [
+                  "id"
+                ],
+                                "type": "column"
+              }
+            ]
+          ],
+                    "table": "evenement",
+                    "timeColumn": "date",
+                    "timeColumnType": "timestamp",
+                    "where": [
+                        {
+                            "name": "$__timeFilter",
+                            "params": [],
+                            "type": "macro"
+            }
+          ]
+        }
+      ],
+            "timeFrom": null,
+            "timeShift": null,
+            "title": "Monitoring",
+            "type": "stat"
+    },
+        {
+            "datasource": null,
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "thresholds"
+                    },
+                    "custom": {
+                        "align": null,
+                        "filterable": false
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+              },
+                            {
+                                "color": "red",
+                                "value": 80
+              }
+            ]
+                    }
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 8,
+                "w": 12,
+                "x": 12,
+                "y": 16
+            },
+            "id": 8,
+            "options": {
+                "showHeader": true
+            },
+            "pluginVersion": "7.4.3",
+            "targets": [
+                {
+                    "format": "table",
+                    "group": [],
+                    "metricColumn": "none",
+                    "rawQuery": true,
+                    "rawSql": "SELECT u.username as \"User\", count(e.id) as \"Event\" FROM `evenement` e JOIN user u ON e.creator=u.id  GROUP BY creator Order By event desc",
+                    "refId": "A",
+                    "select": [
+            [
+                            {
+                                "params": [
+                  "id"
+                ],
+                                "type": "column"
+              },
+                            {
+                                "params": [
+                  "id"
+                ],
+                                "type": "alias"
+              }
+            ]
+          ],
+                    "table": "user",
+                    "timeColumn": "created_at",
+                    "timeColumnType": "timestamp",
+                    "where": []
+        }
+      ],
+            "title": "Event / user",
+            "type": "table"
+    }
+  ],
+    "refresh": "5s",
+    "schemaVersion": 27,
+    "style": "dark",
+    "tags": [],
+    "templating": {
+        "list": []
+    },
+    "time": {
+        "from": "now-6h",
+        "to": "now"
+    },
+    "timepicker": {},
+    "timezone": "",
+    "title": "MyCorpo",
+    "uid": "YpZ67-UMz",
+    "version": 38
+}
