@@ -23,12 +23,11 @@ jobs:
       - name: Create cypress screenshot and videos folder
         run: |
           sudo mkdir cypress cypress/screenshots cypress/videos
+      - name: Run Cypress
       - uses: cypress-io/github-action@v2
         with:
           project: ./front-end
           working-directory: ./front-end
-          build: |
-            docker-compose up -d --build
       - uses: actions/upload-artifact@v1
         if: failure()
         with:
