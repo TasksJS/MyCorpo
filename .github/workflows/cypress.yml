@@ -19,7 +19,7 @@ jobs:
           sudo mkdir web web/cache web/public
       - name: Create cypress screenshot and videos folder
         run: |
-          sudo mkdir web cypress/screenshots cypress/videos
+          sudo mkdir cypress cypress/screenshots cypress/videos
       - uses: cypress-io/github-action@v1
         with:
           build: |
