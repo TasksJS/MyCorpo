@@ -25,6 +25,7 @@ jobs:
           sudo mkdir cypress cypress/screenshots cypress/videos
       - uses: cypress-io/github-action@v2
         with:
+          project: ./front-end
           build: |
             docker-compose up -d --build
       - uses: actions/upload-artifact@v1
