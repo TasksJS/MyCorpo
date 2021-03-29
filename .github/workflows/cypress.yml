@@ -23,6 +23,11 @@ jobs:
       - name: Create cypress screenshot and videos folder
         run: |
           sudo mkdir cypress cypress/screenshots cypress/videos
+      - name: Setup Backend Project
+        run: |
+            cd back-end
+            npm ci
+            npm test
       - name: Run Cypress
         uses: cypress-io/github-action@v2
         with:
