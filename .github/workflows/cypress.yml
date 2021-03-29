@@ -1,0 +1,46 @@
+name: Cypress
+
+on:
+  push:
+  pull_request:
+    branches: [master, develop]
+
+jobs:
+  cypress-run:
+    runs-on: ubuntu-latest
+    name: Tests with Cypress
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Create cache folder
+        run: |
+          sudo mkdir web web/cache web/public
+      - name: Create log folder
+        run: |
+          sudo mkdir log
+      - name: Create cypress screenshot and videos folder
+        run: |
+          sudo mkdir cypress cypress/screenshots cypress/videos
+      - name: Setup Backend Project
+        run: |
+            cd back-end
+            npm ci
+            npm test
+      - name: Run Cypress
+        uses: cypress-io/github-action@v2
+        with:
+          working-directory: ./front-end
+          start: |
+            npm run dev
+      - uses: actions/upload-artifact@v1
+        if: failure()
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots
+      - uses: actions/upload-artifact@v1
+        if: always()
+        with:
+          name: cypress-videos
+          path: cypress/videos

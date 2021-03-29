@@ -1,0 +1,33 @@
+name: Linter
+
+on:
+  pull_request:
+    branches: [ master, develop ]
+
+jobs:
+  build:
+    name: Linter
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Checkout Code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Lint Code
+        uses: github/super-linter@v3
+        env:
+          VALIDATE_ALL_CODEBASE: false
+          DEFAULT_BRANCH: master
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VALIDATE_JAVASCRIPT_ES: true
+          VALIDATE_HTML: true
+          VALIDATE_CSS: true
+          VALIDATE_TYPESCRIPT_ES: true
+          OUTPUT_DETAILS: detailed
+          OUTPUT_FORMAT: tap
+      - name: Upload Report as an artifact
+        uses: actions/upload-artifact@master
+        with:
+          name: linter-report
+          path: "${{ github.workspace }}/super-linter.report/"

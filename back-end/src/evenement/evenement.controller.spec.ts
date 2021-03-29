@@ -4,14 +4,10 @@ import { EvenementService } from './evenement.service';
 
 describe('EvenementController', () => {
   let controller: EvenementController;
+  let eventService: EvenementService;
 
-  beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
-      controllers: [EvenementController],
-      providers: [EvenementService],
-    }).compile();
-
-    controller = module.get<EvenementController>(EvenementController);
+  beforeEach(() => {
+    controller = new EvenementController(eventService);
   });
 
   it('should be defined', () => {
