@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { Evenement } from './evenement.entity';
 
 @Entity()
 export class User {
@@ -10,4 +11,14 @@ export class User {
 
   @Column()
   password: string;
+
+  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  created_at: string;
+
+  @OneToMany(() => Evenement, (Evenement) => Evenement.creator, {
+    onUpdate: 'CASCADE',
+    onDelete: 'CASCADE',
+    eager: true,
+  })
+  evenements: Evenement[];
 }
